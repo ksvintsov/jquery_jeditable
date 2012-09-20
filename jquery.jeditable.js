@@ -172,6 +172,7 @@
                                 
                 self.editing    = true;
                 self.revert     = $(self).html();
+                var input_content = $(self).text();
                 $(self).html('');
 
                 /* Create the form object. */
@@ -200,7 +201,6 @@
                 var input = element.apply(form, [settings, self]);
 
                 /* Set input content via POST, GET, given data or existing value. */
-                var input_content;
                 
                 if (settings.loadurl) {
                     var t = setTimeout(function() {
@@ -231,8 +231,6 @@
                     if ($.isFunction(settings.data)) {
                         input_content = settings.data.apply(self, [self.revert, settings]);
                     }
-                } else {
-                    input_content = self.revert; 
                 }
                 content.apply(form, [input_content, settings, self]);
 
